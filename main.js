@@ -145,9 +145,9 @@ function addCommands (commandsArr){
 /**
  * Adds a command
  * @param  {String}   name    Name of the command
- * @param  {Function} command Function to be called when command is ran
+ * @param  {Function} callback Function to be called when command is ran
  */
-function addCommand (name,command){
+function addCommand (name,callback){
     commands[name] = command;
 }
 /**
