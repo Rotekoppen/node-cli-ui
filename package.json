@@ -15,11 +15,16 @@
     "type": "git",
     "url": "git://github.com/11rcombs/node-cli-ui.git"
   },
-  "scripts": {},
+  "scripts": {
+    "generate-docs": "rm docs/ -rf && node_modules/.bin/jsdoc -c .jsdoc.json ./ && mv docs/CLI-UI/0.*.*/* docs/ && rm docs/CLI-UI/ -rf"
+  },
   "config": {},
   "engines": {
     "node": ">=0.4.8"
   },
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "jsdoc": "^3.5.5",
+    "postman-jsdoc-theme": "^0.0.3"
+  }
 }

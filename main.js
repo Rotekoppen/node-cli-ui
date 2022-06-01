@@ -33,7 +33,7 @@ var global = {
     runCommand: parseCommand
 };
 var commands = {
-    help: {    
+    help: {
         function: function(command){
             if(command){
                 if(commands[command]){
@@ -89,7 +89,11 @@ function listenForCommand(){
         parseCommand(line);
     });
 }
-exports.setHistoryFile = function(filename){
+/**
+ * Set the file to store history inside. Also loads/reloads the history
+ * @param {String} filename Path to history file
+ */
+function setHistoryFile (filename){
     if(!filename){
         throw new Error("No filename!");
     }
@@ -105,29 +109,67 @@ exports.setHistoryFile = function(filename){
     }
     readline.history = history.split("\n");
 }
-exports.setOptions = function(optionsArr){
+/**
+ * Sets multiple options
+ * @see setOption
+ * @see addCommands
+ * @param  {Object} optionsArr Object where key is option name, and data is a string
+ */
+function setOptions (optionsArr){
     for(var i in optionsArr){
         options[i] = optionsArr[i];
     }
 }
-exports.setOption = function(key,value){
+/**
+ * Set an option. The only options are programName, programVersion and promptCharacter
+ * @param  {String} key   Key to set
+ * @param  {String} value Value to set
+ */
+function setOption (key,value){
     options[key] = value;
 }
-exports.addCommands = function(commandsArr){
+/**
+ * Adds multiple commands
+ * @see addCommand
+ * @param  {Object} commandsArr Object where key is command name, and data is functions
+ */
+function addCommands (commandsArr){
     for(var i in commandsArr){
         commands[i] = commandsArr[i];
     }
 }
-exports.addCommand = function(name,command){
+/**
+ * Adds a command
+ * @param  {String}   name    Name of the command
+ * @param  {Function} command Function to be called when command is ran
+ */
+function addCommand (name,command){
     commands[name] = command;
 }
-exports.removeCommand = function(name){
+/**
+ * Removes a command
+ * @param {String} name               Name of the command
+ */
+function removeCommand (name){
     delete commands[name];
 }
-exports.startCLI = function(){
+/**
+ * Starts the CLI
+ */
+function startCLI (){
     process.stdout.write((options.programName?(options.programName+(options.programVersion?(" v"+options.programVersion):"") +" using "):"")+"CLI-UI v"+VERSION+" running Node.js "+process.version+".\nType help for commands.\n");
     if(options.init){
         options.init.call(global,options);
     }
     listenForCommand();
+}
+
+exports = {
+  setHistoryFile,
+  setOptions,
+  setOption,
+  addCommands,
+  addCommand,
+  removeCommand,
+  startCLI
 }
