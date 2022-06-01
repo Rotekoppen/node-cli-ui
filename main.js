@@ -66,6 +66,10 @@ var commands = {
         helpText: "Alias to quit"
     }
 };
+/**
+ * Runs text as a command
+ * @param  {String} command
+ */
 function parseCommand(command){
     var argv = command.split(" ");
     if(commands[argv[0]]){
@@ -164,12 +168,14 @@ function startCLI (){
     listenForCommand();
 }
 
-exports = {
+module.exports = {
   setHistoryFile,
   setOptions,
   setOption,
   addCommands,
   addCommand,
   removeCommand,
-  startCLI
+  startCLI,
+  readline,
+  parseCommand
 }
