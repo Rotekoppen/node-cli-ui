@@ -161,7 +161,7 @@ function removeCommand (name){
  * Starts the CLI
  */
 function startCLI (){
-    process.stdout.write((options.programName?(options.programName+(options.programVersion?(" v"+options.programVersion):"") +" using "):"")+"CLI-UI v"+VERSION+" running Node.js "+process.version+".\nType help for commands.\n");
+    //process.stdout.write((options.programName?(options.programName+(options.programVersion?(" v"+options.programVersion):"") +" using "):"")+"CLI-UI v"+VERSION+" running Node.js "+process.version+".\nType help for commands.\n");
     if(options.init){
         options.init.call(global,options);
     }
