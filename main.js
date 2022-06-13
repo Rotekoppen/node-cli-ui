@@ -148,7 +148,7 @@ function addCommands (commandsArr){
  * @param  {Function} callback Function to be called when command is ran
  */
 function addCommand (name,callback){
-    commands[name] = command;
+    commands[name] = callback;
 }
 /**
  * Removes a command
